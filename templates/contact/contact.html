@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+   
+    label{
+        color:black;
+        font-size:20px;
+    }
+    ul{
+        color:red;
+    }
+    </style>
+    <!--================ Home Banner Area =================-->
+  <section class="home_banner_area banner-area">
+    <div class="banner_inner d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+            <div class="banner_content d-flex flex-md-row flex-column">
+              <div class="banner-left text-md-right">
+                <h1 class="text-uppercase">Contact Us</h1>
+              </div>
+              <div class="banner-right position-relative">
+                <p>
+                  If you are looking at blank cassettes on the web, you may be very confused.
+                </p>
+                <span class="main_btn mt-4 mt-md-0" href="#" style="margin-right:55px;margin-bottom:5px;">
+                  <a href="index.html" class="text-white">Home</a>
+                  <i class="fa fa-arrow-right mx-2"></i>
+                  <a href="contact.html" class="text-white">Contact</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================ End Home Banner Area =================-->
+
+
+  <!-- ================ contact section start ================= -->
+  <section class="section_gap">
+    <div class="container">
+      <div class="d-none d-sm-block mb-5 pb-4">
+
+      <div class="row">
+        <div class="col-12">
+       
+          <h2 class="contact-title">Get in Touch</h2>
+        </div>
+        <div class="col-lg-8">
+         {% include "alerts.html" %}
+          <form class="form" action="{% url 'contact' %}" method="POST">
+          {% csrf_token %}
+            {{ form.as_p }}
+            <div class="form-group mt-2 mb-5 mb-lg-0">
+              <button type="submit" class="button button-contactForm main_btn">Send Message</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="fa fa-home"></i></span>
+            <div class="media-body">
+              <h3>SRMCEM College Rd, Lucknow.</h3>
+              <p>Uttar Pradesh, India 226010</p>
+            </div>
+          </div>
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="fa fa-phone"></i></span>
+            <div class="media-body">
+              <h3><a href="tel:454545654">+91 9792 061 934</a></h3>
+              <p>Mon to Fri 9am to 6pm</p>
+            </div>
+          </div>
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="fa fa-envelope-o"></i></span>
+            <div class="media-body">
+              <h3><a href="mailto:singhbalkeet@gmail.com">srmcem.ac.in</a></h3>
+              <p>Send us your query anytime!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================ contact section end ================= -->
+
+  <!--================ Start CTA Area ================-->
+  <section class="cta_area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="cta_inner d-flex flex-md-row flex-column justify-content-between align-items-center">
+              <div class="mb-md-0 mb-4 text-sm-left text-center">
+                <p>Get a quick response from our team</p>
+                <h1>Please feel free to reach us</h1>
+              </div>
+              <div class="">
+                <a href="#" class="main_btn">Explore More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================ End CTA Area ================-->
+{% endblock content %}

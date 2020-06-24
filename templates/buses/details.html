@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  .nice-select{
+    width:100%;
+  }
+  .list{
+    width:100%;
+    color:black;
+  }
+  label{
+    color:black!important;
+    font-size:20px;
+  }
+</style>
+<section class="home_banner_area banner-area">
+    <div class="banner_inner d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+            <div class="banner_content d-flex flex-md-row flex-column">
+              <div class="banner-left text-md-right">
+              
+                <h1 class="text-uppercase">Bus Details</h1>
+              </div>
+              <div class="banner-right position-relative">
+                <p>
+                  If you are looking at blank cassettes on the web, you may be very confused.
+                </p>
+                <span class="main_btn mt-4 mt-md-0" href="#" style="margin-right:55px;margin-bottom:5px;">
+                  <a href="#" class="text-white">All Buses</a>
+                  <i class="fa fa-arrow-right mx-2"></i>
+                  <a href="#" class="text-white">Details</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    <section class="blog_area single-post-area section_gap">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 posts-list">
+        <div class="text-center">
+        {% include "alerts.html" %}
+            <h1 class="text-uppercase" style="padding-bottom:40px">Bus Details</h1>
+        </div>
+          <div class="single-post">
+            <div class="text-center feature-img">
+              <img class="img-fluid" src="{{ bus.bus_photo.url }}" alt="">
+            </div>
+            <div class="container">
+            {% if user.is_student %}
+            <div class="row text-center" style="margin-top:50px">
+            <div class="col-md-3">
+                <h3>Route :<br> {{ bus.route }}<h3>
+            </div>
+            <div class="col-md-3">
+                <h3>Bus Number :<br> {{ bus.bus_no }}<h3>
+            </div>
+            <div class="col-md-3">
+                <h3>Serial Number :<br> {{ bus.bus_serial_no }}<h3>
+            </div>
+            <div class="col-md-3">
+                <h3>Driver Name :<br> {{ bus.driver_name }}<h3>
+            </div>
+            </div>
+            <div class="row text-center" style="margin-top:50px">
+            <div class="col-md-4">
+                <h3>Starting Point :<br> {{ bus.starting_point }}<h3>
+            </div>
+            <div class="col-md-4">
+                <h3>Stoppages :<br> {{ bus.stoppage }}<h3>
+            </div>
+            <div class="col-md-4">
+                <h3>Price :<br> {{ bus.price }}<h3>
+            </div>
+            </div>
+            <div class="row text-center" style="margin-top:50px">
+            <div class="col-md-12">
+                <h3>
+                <a href="" data-toggle="modal" data-target="#myModal">
+                    <button class="btn btn-success btn-lg">Apply For Pass</button>
+                </a><h3>
+            </div>
+            </div>
+        {% else %}
+            <div class="row text-center" style="margin-top:50px">
+            <div class="col-md-4">
+                <h3>Route :<br> {{ bus.route }}<h3>
+            </div>
+            <div class="col-md-4">
+                <h3>Bus Number :<br> {{ bus.bus_no }}<h3>
+            </div>
+            <div class="col-md-4">
+                <h3>Serial Number :<br> {{ bus.bus_serial_no }}<h3>
+            </div>
+            
+            </div>
+            <div class="row text-center" style="margin-top:50px">
+            <div class="col-md-4">
+                <h3>Starting Point :<br> {{ bus.starting_point }}<h3>
+            </div>
+            <div class="col-md-4">
+                <h3>Stoppages :<br> {{ bus.stoppage }}<h3>
+            </div>
+            <div class="col-md-4">
+                <h3>Driver Name :<br> {{ bus.driver_name }}<h3>
+            </div>
+            </div>
+            <div class="row text-center" style="margin-top:50px">
+            <div class="col-md-12">
+                <h3>
+                <a href="" data-toggle="modal" data-target="#myModal">
+                    <button class="btn btn-success btn-lg">Apply For Pass</button>
+                </a>
+                <h3>
+            </div>
+            </div>
+        {% endif %}
+            </div>
+          </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </section>
+  <h3 class="mb-lg-4 mb-md-3 mb-sm-2 mb-2" align="center">Find Your Starting Point</h3>
+	<!-- contact -->
+	{% if '1' in request.path %}
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.5700887149687!2d80.94572671468296!3d26.821814270455068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfdf1645c2963%3A0x767247382db42067!2sLucknow%20Cantt%20Board!5e0!3m2!1sen!2sin!4v1592312764146!5m2!1sen!2sin" width="1350" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+	{% endif %}
+	
+	{% if '2' in request.path %}
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28484.55015442259!2d80.93040576266999!3d26.821856262197013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfc35042a821f%3A0xbc004fbcc44c2106!2sLucknow%20Junction!5e0!3m2!1sen!2sin!4v1592313866924!5m2!1sen!2sin" width="1350" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+	{% endif %}
+	
+	{% if '3' in request.path %}
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28480.85088855503!2d80.85776681277862!3d26.836569165906365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfe5d323b520b%3A0x2f011730d8522686!2sRajajipuram%2C%20Lucknow%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1592471120365!5m2!1sen!2sin" width="1350" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+	{% endif %}
+	
+	{% if '4' in request.path %}
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.577428456661!2d80.99344881468431!3d26.885163667748525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399be2a832279a0f%3A0xaa9c1a51b606b21f!2sMunshipulia%20Chouraha%2C%20Munshi%20Pulia%2C%20Block%20C%2C%20Indira%20Nagar%2C%20Lucknow%2C%20Uttar%20Pradesh%20226016!5e0!3m2!1sen!2sin!4v1592471203324!5m2!1sen!2sin" width="1350" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+	{% endif %}
+	
+	{% if '5' in request.path %}
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.7428461664!2d80.94250581468476!3d26.911655166615034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399957b49c35b339%3A0x922a98079078d40a!2sEngineering%20College%20Chauraha%2C%20Sector%20A%2C%20Jankipuram%2C%20Lucknow%2C%20Uttar%20Pradesh%20226021!5e0!3m2!1sen!2sin!4v1592471290298!5m2!1sen!2sin" width="1350" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+	{% endif %}
+	
+	{% if '6' in request.path %}
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.6733527925285!2d80.9428050646842!3d26.882117267878844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd7fd059a6b3%3A0x88a5df1e6b8f2857!2sKapoorthla%2C%20Chandralok%2C%20Lucknow%2C%20Uttar%20Pradesh%20226024!5e0!3m2!1sen!2sin!4v1592471397888!5m2!1sen!2sin" width="1350" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+	{% endif %}
+	
+	{% if '7' in request.path %}
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14234.94644353355!2d80.93605842561026!3d26.88010811962916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd7fa6795553%3A0x27bb5814fc5c9a80!2sAliganj%2C%20Sector%20A%2C%20Chandralok%2C%20Lucknow%2C%20Uttar%20Pradesh%20226024!5e0!3m2!1sen!2sin!4v1592471505891!5m2!1sen!2sin" width="1350" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+	{% endif %}
+	
+	{% if '8' in request.path %}
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.186089472067!2d80.9069730146839!3d26.865828168575273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfde5828eca45%3A0x7a450e994d5fe3f9!2sGole%20Darwaza%20Chowk%2C%20Chowk%2C%20Lucknow%2C%20Uttar%20Pradesh%20226003!5e0!3m2!1sen!2sin!4v1592471566619!5m2!1sen!2sin" width="1350" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+	{% endif %}
+	
+          <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-body">
+                <h2>Select Your Route</h2>
+                <button type="button" class="close" data-dismiss="modal"
+                style="position: absolute;top: 10px;right: 10px;">&times;</button>
+                  <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <center>
+                    <button type="submit" class="btn btn-success" style="margin-top:20px">Submit</button>
+                  </center>
+                </form>
+                </div>
+                
+              </div>
+
+            </div>
+          </div>
+{% endblock content %}

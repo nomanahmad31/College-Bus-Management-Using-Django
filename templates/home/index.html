@@ -1,0 +1,175 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+  label {
+    color: black;
+  }
+</style>
+<section class="home_banner_area">
+  <div class="banner_inner d-flex align-items-center">
+    <div class="container">
+      {% include "alerts.html" %}
+      {% if user.is_authenticated %}
+      <div class="row">
+        <div class="col-lg-7">
+          <div class="banner_content d-flex flex-md-row flex-column">
+            <div class="banner-left" style="background-color: transparent">
+              <h1 class="text-uppercase"> Welcome<br> {{ user.first_name }} {{ user.last_name }}</h1>
+              {% if user.is_faculty %}
+              <p style="color:white;margin-bottom:0px;font-size:20px">You are signed in as a Faculty Member.</p>
+              {% else %}
+              <p style="color:white;margin-bottom:0px;font-size:20px">You are signed in as a Student.</p>
+              {% endif %}
+              <p style="color:white;margin-bottom:0px;font-size:20px">To Views Buses and their details, visit the all
+                buses page.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="banner_content d-flex flex-md-row flex-column">
+            <div class="banner-left col-md-6" style="border-radius:10px;padding:30px;background-color:white">
+              <h1 style="padding-bottom:20px;color:black">Login Here:</h1>
+              <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="email">Email address:</label>
+                  <input type="email" class="form-control" id="email" name="email">
+                </div>
+                <div class="form-group">
+                  <label for="pwd">Password:</label>
+                  <input type="password" class="form-control" id="pwd" name="password">
+                </div>
+                <p class="text-center">Forgot Password? <a href="{% url 'password_reset' %}">Click Here</a> to generate a new one.</p>
+                <center>
+                  <button type="submit" class="main_btn">Login</button>
+                </center>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+<!--================ End Home Banner Area =================-->
+<!--================ Start Quote Area =================-->
+{% if not user.is_authenticated %}
+<section class="quote-area">
+  <div class="container">
+    <div class="row justify-content-center text-left section-title-wrap" style="margin-bottom:40px">
+      <div class="col-lg-12">
+        <h2 class="text-white" style="color: black!important;padding-top: 40px;text-align:center">
+          Register Below <br>
+
+        </h2>
+      </div>
+
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1>Member of a faculty? <br>Click below to register.</h1>
+        <a href="{% url 'faculty-signup' %}">
+          <button class="btn btn-success btn-lg">Register Here</button>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <h1>Student of the college? <br>Click below to register.</h1>
+        <a href="{% url 'student-signup' %}">
+          <button class="btn btn-success btn-lg">Register Here</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+<!--================ Feature Area =================-->
+<section class="feature-area section_gap_top">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-lg-7">
+        <div class="row">
+          <div class="col-lg-6 col-md-6">
+            <div class="single-feature">
+              <img src="{% static 'img/feature/f1.png' %}" alt="">
+              <h4>All Buses</h4>
+              <p>
+                The French Revolutioncons tituted for the conscience of the dominant the French Revolutioncons.
+              </p>
+              {% if user.is_authenticated %}
+                  <a href="{% url 'buses' %}">See All Buses</a>
+              {% else %}
+                  <a href="{% url 'student-signup' %}">See All Buses</a>
+              {% endif %}
+              
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <div class="single-feature">
+              <img src="{% static 'img/feature/f2.png' %}" alt="">
+              <h4>Have a Question?</h4>
+              <p>
+                The French Revolutioncons tituted for the conscience of the dominant the French Revolutioncons.
+              </p>
+              <a href="{% url 'contact' %}">Contact Us</a>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <div class="single-feature">
+              <img src="{% static 'img/feature/f3.png' %}" alt="">
+              <h4>Feedback</h4>
+              <p>
+                The French Revolutioncons tituted for the conscience of the dominant the French Revolutioncons.
+              </p>
+              <a href="{% url 'need-help' %}">Need Help?</a>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <div class="single-feature">
+              <img src="{% static 'img/feature/f4.png' %}" alt="">
+              <h4>Get Your Pass</h4>
+              <p>
+                The French Revolutioncons tituted for the conscience of the dominant the French Revolutioncons.
+              </p>
+              <a href="">Get Pass</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5 offset-md-0 col-md-12 text-left section-title-wrap mt-4 mt-lg-0">
+        <h5>About Our Service</h5>
+        <h2>
+          We’re Carefully <br>
+          Drop your <br>
+          child.
+        </h2>
+
+        <h4>If you are looking at blank cassettes on the web lorem ipsum dolor sit consectetur adipisicing elit,
+          eiusmod tempor incididunt.</h4>
+        <p>
+          If you are looking at blank cassettes on the web lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Eiusmod tempor
+          incididunt ut labore et dolore magna aliqua consectetur adipisicing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua.
+        </p>
+        <a href="{% url 'about' %}" class="main_btn">Learn More About Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!--================ End Feature Area =================-->
+
+
+
+
+
+
+{% endblock %}

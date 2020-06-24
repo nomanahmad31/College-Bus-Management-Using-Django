@@ -1,0 +1,277 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png" />
+  <title>SRMCEM Bus Management</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+  <link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'vendors/nice-select/css/nice-select.css' %}" />
+  <link rel="stylesheet" href="{% static 'vendors/animate-css/animate.css' %}" />
+  <link rel="stylesheet" href="{% static 'vendors/jquery-ui/jquery-ui.css' %}" />
+  <!-- main css -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
+  <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Inter&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="{% static 'css/a.css' %}" />
+</head>
+
+<body>
+<!--================Header Menu Area =================-->
+  <header class="header_area">
+    <div class="top_menu d-lg-block d-none">
+      <div class="container">
+        <div class="float-left">
+          <ul class="left_side">
+            <li>
+              <a href="login.html">
+                <i class="fa fa-facebook-f"></i>
+              </a>
+            </li>
+            <li>
+              <a href="login.html">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="login.html">
+                <i class="fa fa-dribbble"></i>
+              </a>
+            </li>
+            <li>
+              <a href="login.html">
+                <i class="fa fa-behance"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="float-right">
+          <ul class="right_side">
+            <li>
+              <a href="#">
+                <i class="lnr lnr-phone-handset"></i>
+                +91 9792 061 934
+              </a>
+            </li>
+            <li>
+              <a href="http://srmcem.ac.in/">
+                <i class="lnr lnr-envelope"></i>
+                srmcem.ac.in
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="main_menu">
+      <nav class="navbar navbar-expand-lg w-100" style="background-color: white;">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <a class="navbar-brand logo_h" href="{% url 'index' %}">
+            <img src="{% static 'img/logo.png' %}" style="height: 70px;width: 100px;" alt="" />
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <div class="row w-100">
+              <div class="col-lg-12 pr-lg-0">
+                <ul class="nav navbar-nav ml-auto justify-content-end">
+                  <li
+				  {% if '/' == request.path %}
+				  class="nav-item active"
+				  {% else %}
+				  class="nav-item"
+				  {% endif %}
+				  >
+                    <a class="nav-link" href="{% url 'index' %}">Home</a>
+                  </li>
+                  {% if user.is_authenticated %}
+                  <li 
+				  {% if 'buses' in request.path %}
+				  class="nav-item active"
+				  {% else %}
+				  class="nav-item"
+				  {% endif %}
+				  >
+                    <a class="nav-link" href="{% url 'buses' %}">All Buses</a>
+                  </li>
+                  {% endif %}
+                  <li 
+				  {% if 'about' in request.path %}
+				  class="nav-item active"
+				  {% else %}
+				  class="nav-item"
+				  {% endif %}
+				  >
+                    <a class="nav-link" href="{% url 'about' %}">About</a>
+                  </li>
+                  
+        
+                
+                  <li 
+				  {% if '/contact/' == request.path %}
+				  class="nav-item active"
+				  {% else %}
+				  class="nav-item"
+				  {% endif %}
+				  >
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                  </li>
+                  
+				          <li
+						  {% if 'need-help' in request.path %}
+				  class="nav-item active"
+				  {% else %}
+				  class="nav-item"
+				  {% endif %}
+				  >
+                    <a class="nav-link" href="{% url 'need-help' %}">Need Help?</a>
+                  </li>
+                  
+                  {% if user.is_authenticated %}
+
+                  <li class="nav-item submenu dropdown">
+                    <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                      aria-expanded="false">
+                      <img src="{{ user.user_photo.url }}"
+                      style="height:50px;width:50px;border-radius:50%"></a>
+                    <ul class="dropdown-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'bus-pass' %}">My Pass</a>
+                      </li>
+                      {% if user.is_student %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'edit-student-profile' %}">Edit Profile</a>
+                      </li>
+                      
+                      {% else %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'edit-faculty-profile' %}">Edit Profile</a>
+                      </li>
+                      {% endif %}
+                      
+                      <li class="nav-item">
+                        <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+                      <form action="{% url 'logout' %}" method="POST" id="logout">
+                          {% csrf_token %}
+                          <input type="hidden"/>
+                          </form>
+                      </li>
+                    </ul>
+                  </li>
+                  {% else %}
+                  <li class="nav-item submenu dropdown">
+                    <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                      aria-expanded="false">Signup</a>
+                    <ul class="dropdown-menu">
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'student-signup' %}">As Student</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'faculty-signup' %}">As Faculty</a>
+                      </li>
+                    </ul>
+                  </li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!--================Header Menu Area =================-->
+{% block content %}
+
+
+
+{% endblock %}
+
+
+
+<footer class="footer-area section_gap">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 col-md-6 col-sm-6">
+          <div class="single-footer-widget">
+            <h6>About Us</h6>
+            <p>
+              If you own an Iphone, you’ve probably already worked out how much fun it is to use it to watch movies-it
+              has
+              that.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-5  col-md-6 col-sm-6">
+          <div class="single-footer-widget">
+            <h6>Newsletter</h6>
+            <p>Stay update with our latest</p>
+            <div class="" id="mc_embed_signup">
+              <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                method="get" class="form-inline">
+                <input class="form-control" name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''"
+                  onblur="this.placeholder = 'Email Address'" required="" type="email">
+                <button class="click-btn btn btn-default"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                <div style="position: absolute; left: -5000px;">
+                  <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                </div>
+                <div class="info"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
+          <div class="single-footer-widget">
+            <h6>Follow Us</h6>
+            <p>Let us be social</p>
+            <div class="footer-social d-flex align-items-center">
+              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-dribbble"></i></a>
+              <a href="#"><i class="fa fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <p class="footer-text">
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | SRMCEM Bus Management</a>
+</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--================ End footer Area =================-->
+
+  <!--================ Optional JavaScript =================-->
+  <!--================ jQuery first, then Popper.js, then Bootstrap JS =================-->
+  <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'js/popper.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'vendors/nice-select/js/jquery.nice-select.min.js' %}"></script>
+  <script src="{% static 'vendors/isotope/isotope-min.js' %}"></script>
+  <script src="{% static 'vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src="{% static 'js/mail-script.js' %}"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
+  <script src="{% static 'js/a.js' %}"></script>
+</body>
+
+</html>
